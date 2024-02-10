@@ -27,6 +27,8 @@ model User {
 
   stream Stream?
 
+  tournaments Tournament[] // Added tournaments relation
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -43,9 +45,29 @@ model Organization {
   foundingDate  DateTime?
   contactPerson String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  User      User[]
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  User       User[]
+  Tournament Tournament[]
+}
+
+model Tournament {
+  id           String        @id @default(uuid())
+  title        String
+  description  String
+  organization Organization? @relation(fields: [organizationId], references: [id]) // Association with Organization
+  startDate    DateTime
+  endDate      DateTime
+  rules        String
+  gameName     String
+  thumbnailUrl String?
+  mode         String // Mode can be multiplayer or singleplayer
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  organizationId String?
+  User           User?    @relation(fields: [userId], references: [id])
+  userId         String?
 }
 
 model Stream {
