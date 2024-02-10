@@ -42,12 +42,10 @@ model Organization {
   location      String?
   foundingDate  DateTime?
   contactPerson String?
-  contactEmail  String?
-  contactPhone  String?
-  users         User[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  User      User[]
 }
 
 model Stream {
