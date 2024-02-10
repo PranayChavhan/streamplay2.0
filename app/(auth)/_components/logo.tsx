@@ -11,12 +11,13 @@ const font = Poppins({
 export const Logo = () => {
   return (
     <div className="flex flex-col items-center gap-y-4">
-      <div className="bg-white rounded-full p-1">
+      <div className=" p-0">
         <Image
-          src="/spooky.svg"
+          src="/logo.png"
           alt="StreamPlay"
-          height="80"
-          width="80"
+          className="w-full h-full rounded-full object-cover"
+          width="36"
+          height="36"
         />
       </div>
       <div className={cn(
