@@ -24,20 +24,26 @@ model User {
   blockedBy Block[] @relation("BlockedBy")
 
   organization Organization? @relation(fields: [organizationId], references: [id])
-
+tournaments Tournament[]
   stream Stream?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Team      Team?    @relation(fields: [teamId], references: [id])
+  teamId    String?
 
   @@index([organizationId])
 }
 
 model Organization {
-  id       String  @id @default(uuid())
-  name     String
-  desc     String
-  imageUrl String? @db.Text
+  id            String    @id @default(uuid())
+  name          String
+  description   String
+  imageUrl      String?   @db.Text
+  email         String?   @unique
+  location      String?
+  foundingDate  DateTime?
+  contactPerson String?
 
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
@@ -45,23 +51,52 @@ model Organization {
   Tournament Tournament[]
 }
 
-model Tournament {
-  id           String        @id @default(uuid())
-  title        String
-  description  String
-  organization Organization? @relation(fields: [organizationId], references: [id]) // Association with Organization
-  startDate    DateTime
-  endDate      DateTime
-  rules        String
-  gameName     String
-  thumbnailUrl String?
-  mode         String // Mode can be multiplayer or singleplayer
+model Team {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  imageUrl    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  players        User[] // Assuming a team can have multiple players
+  tournaments    Tournament[] // Assuming a team can participate in multiple tournaments
+  TeamTournament TeamTournament[]
+}
+
+model Tournament {
+  id             String        @id @default(uuid())
+  title          String
+  description    String
+  organization   Organization? @relation(fields: [organizationId], references: [id]) // Association with Organization
+  startDate      DateTime
+  endDate        DateTime
+  rules          String
+  gameName       String
+  thumbnailUrl   String?
   organizationId String?
-  User           User?    @relation(fields: [userId], references: [id])
-  userId         String?
+User          User?    @relation(fields: [userId], references: [id])
+  userId        String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teams          Team[] // A tournament can have multiple teams
+  TeamTournament TeamTournament[]
+}
+
+// New model to represent the many-to-many relationship between Team and Tournament
+model TeamTournament {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  team   Team   @relation(fields: [teamId], references: [id])
+  teamId String
+
+  tournament   Tournament @relation(fields: [tournamentId], references: [id])
+  tournamentId String
+
+  @@unique([teamId, tournamentId])
 }
 
 model Stream {
@@ -117,5 +152,3 @@ model Block {
   @@index([blockerId])
   @@index([blockedId])
 }
-
-// 
