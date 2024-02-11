@@ -64,18 +64,18 @@ const CreateTournament = () => {
             //create a new Date
             const date = new Date();
             formData.foundingDate = date.toISOString();
-            //save to database at post at orhganization/create
+            //save to database at post at tournament/create
             const body = { ...formData };
-            // const data = await fetch('/api/organization/create', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(body),
-            // });
+            const data = await fetch('/api/tournament/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body),
+            });
 
-            // //redirect to the organization page
-            // router.push('/organization');
+            //redirect to the organization page
+            router.push('/organization');
             console.log("Response Here is:")
-            console.log(body)
+            console.log(data)
         } catch (error) {
             console.error(error);
         }

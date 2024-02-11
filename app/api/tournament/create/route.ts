@@ -25,7 +25,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request, res: Response) {
     console.log("HELLOOO")
-    console.log("REquest REcieved: ");
+    console.log("Request REcieved: ");
     console.log(req.json());
 
 
@@ -34,7 +34,7 @@ export async function POST(req: Request, res: Response) {
 
     const { title, description, organization, startDate, endDate, rules, gameName, thumbnailUrl, } = await req.json();
 
-    console.log("Organization created: ",)
+    console.log("Organization created: ")
 
     //create new tournament
     const tournament = await db.tournament.create({

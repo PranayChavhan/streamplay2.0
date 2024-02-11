@@ -29,6 +29,7 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+<<<<<<< HEAD
   Team      Team?    @relation(fields: [teamId], references: [id])
   teamId    String?
 
@@ -96,7 +97,30 @@ model TeamTournament {
   tournamentId String
 
   @@unique([teamId, tournamentId])
+=======
+
+  @@index([organizationId])
+>>>>>>> pranay
 }
+
+model Organization {
+  id               String    @id @default(uuid())
+  name             String
+  description      String
+  imageUrl         String?   @db.Text
+  email            String?   @unique
+  location         String?
+  foundingDate     DateTime?
+  contactPerson    String?
+  contactEmail     String? 
+  contactPhone     String? 
+  users            User[]
+
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
 
 model Stream {
   id           String  @id @default(uuid())
@@ -151,3 +175,7 @@ model Block {
   @@index([blockerId])
   @@index([blockedId])
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> pranay
