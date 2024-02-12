@@ -25,7 +25,7 @@ export const UserItem = ({
 
   const { collapsed } = useSidebar((state) => state);
 
-  const href = `/${username}`;
+  const href = `/play/${username}`;
   const isActive = pathname === href;
 
   return (
