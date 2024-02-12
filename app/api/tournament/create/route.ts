@@ -32,21 +32,17 @@ export async function POST(req: Request, res: Response) {
     //current user i.e. self
     const self = await getSelf();
 
-    const { title, description, organization, startDate, endDate, rules, gameName, thumbnailUrl, } = await req.json();
+    const { title, description, organization, thumbnailUrl, } = await req.json();
 
     console.log("Organization created: ")
 
     //create new tournament
     const tournament = await db.tournament.create({
         data: {
-            title,
+            name: title,
             description,
             organization,
-            startDate,
-            endDate,
-            rules,
-            gameName,
-            thumbnailUrl,
+            imageUrl: thumbnailUrl,
         }
     });
 
