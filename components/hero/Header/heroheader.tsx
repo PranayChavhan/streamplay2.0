@@ -11,7 +11,7 @@ const HeroHeader = () => {
         <Link href={'organization'} className='tracking-wider text-xs md:text-sm'>
           Organization
         </Link>
-        <Link href={'tournaments'} className='tracking-wider text-xs md:text-sm'>
+        <Link href={'about'} className='tracking-wider text-xs md:text-sm'>
           About Us
         </Link>
         <div className="w-16 md:w-28 h-16 md:h-28">
@@ -22,7 +22,7 @@ const HeroHeader = () => {
         <Link href={'tournaments'} className='tracking-wider text-xs md:text-sm'>
           Tournaments
         </Link>
-        <Link href={'tournaments'} className='tracking-wider text-xs md:text-sm'>
+        <Link href={'contact'} className='tracking-wider text-xs md:text-sm'>
           Contact Us
         </Link>
 
