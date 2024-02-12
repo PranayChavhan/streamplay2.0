@@ -24,7 +24,7 @@ const OrganisationList = () => {
             <h1 className=" text-2xl font-semibold my-3 mt-8">Your Organization's</h1>
 
             {
-                !orgs.length && <p>No Organisation</p>
+                !orgs.length && <p className="mb-4">You have not created any organization yet!!</p>
             }
             <div className="grid grid-cols-3 gap-8">
                 {

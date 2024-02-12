@@ -29,9 +29,6 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-<<<<<<< HEAD
-  Team      Team?    @relation(fields: [teamId], references: [id])
-  teamId    String?
 
   @@index([organizationId])
 }
@@ -45,82 +42,29 @@ model Organization {
   location      String?
   foundingDate  DateTime?
   contactPerson String?
+  contactEmail  String?
+  contactPhone  String?
+  users         User[]
 
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
-  User       User[]
   Tournament Tournament[]
 }
 
-model Team {
-  id          String   @id @default(uuid())
-  name        String
-  description String?
-  imageUrl    String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  players        User[] // Assuming a team can have multiple players
-  tournaments    Tournament[] // Assuming a team can participate in multiple tournaments
-  TeamTournament TeamTournament[]
-}
-
+//Tournament related to organization
 model Tournament {
-  id             String        @id @default(uuid())
-  title          String
+  id             String       @id @default(uuid())
+  name           String
   description    String
-  organization   Organization? @relation(fields: [organizationId], references: [id]) // Association with Organization
-  startDate      DateTime
-  endDate        DateTime
-  rules          String
-  gameName       String
-  thumbnailUrl   String?
-  organizationId String?
+  imageUrl       String?      @db.Text
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  teams          Team[] // A tournament can have multiple teams
-  TeamTournament TeamTournament[]
-}
-
-// New model to represent the many-to-many relationship between Team and Tournament
-model TeamTournament {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  team   Team   @relation(fields: [teamId], references: [id])
-  teamId String
-
-  tournament   Tournament @relation(fields: [tournamentId], references: [id])
-  tournamentId String
-
-  @@unique([teamId, tournamentId])
-=======
 
   @@index([organizationId])
->>>>>>> pranay
 }
-
-model Organization {
-  id               String    @id @default(uuid())
-  name             String
-  description      String
-  imageUrl         String?   @db.Text
-  email            String?   @unique
-  location         String?
-  foundingDate     DateTime?
-  contactPerson    String?
-  contactEmail     String? 
-  contactPhone     String? 
-  users            User[]
-
-
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-}
-
 
 model Stream {
   id           String  @id @default(uuid())
@@ -175,7 +119,3 @@ model Block {
   @@index([blockerId])
   @@index([blockedId])
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> pranay

@@ -1,6 +1,6 @@
 import FormCreateOrg from "@/components/organization/form-create-org"
 import CreateOrganisation from "@/components/organization/form-create-org"
-import HeroHeader from "@/components/hero/heroheader"
+import HeroHeader from "@/components/hero/Header/heroheader"
 import { Button } from "@/components/ui/button";
 import {
     SignInButton,
@@ -33,7 +33,7 @@ const OrganisationRegs = async () => {
             {!!user && (
                 <main className="bg-slate-950">
                     <HeroHeader />
-                    <div className="container max-w-screen-2xl mx-auto ">
+                    <div className="container max-w-screen-xl mx-auto ">
                         <OrganisationList />
                         <FormCreateOrg />
                     </div>

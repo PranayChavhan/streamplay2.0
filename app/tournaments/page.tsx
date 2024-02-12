@@ -1,6 +1,6 @@
 import FormCreateOrg from "@/components/organization/form-create-org"
 import CreateOrganisation from "@/components/organization/form-create-org"
-import HeroHeader from "@/components/hero/heroheader"
+import HeroHeader from "@/components/hero/Header/heroheader"
 import { FaPlus } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
@@ -40,7 +40,7 @@ const Tournaments = async () => {
             )}
 
             {!!user && (
-                <main className="bg-slate-950">
+                <main className="bg-slate-950 min-h-screen">
                     <HeroHeader />
                     <div className="container max-w-screen-2xl mx-auto ">
                         <Dialog>
