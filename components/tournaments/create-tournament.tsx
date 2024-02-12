@@ -217,8 +217,8 @@ const CreateTournament = () => {
                                             <select
                                                 value={formData.organization}
                                                 onChange={handleChange}
-                                                onSelect={(e) => {
-                                                    setFormData({ ...formData, organization: e.target!.value });
+                                                onSelect={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                                                    setFormData({ ...formData, organization: e.target.value });
                                                 }}
                                                 name="organization"
                                                 id="organization"

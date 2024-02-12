@@ -21,7 +21,7 @@ const OrganisationList = () => {
     return (
         <div>
 
-            <h1 className=" text-2xl font-semibold my-3 mt-8">Your Organization's</h1>
+            <h1 className=" text-2xl font-semibold my-3 mt-8">Your Organization&apos;s</h1>
 
             {
                 !orgs.length && <p className="mb-4">You have not created any organization yet!!</p>
